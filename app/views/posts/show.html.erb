@@ -1,0 +1,19 @@
+<%= provide(:title, "Post") %>
+<h1>
+    Titel: <%= @post.title %>
+</h1>
+<div class="center"><%= @post.text %></div>
+
+<h2>Tags</h2>
+
+<% @post.tags_to_post.each do |tag_post| %>
+    <div class="center tag" ><%= tag_post.tag.name%></div>
+<% end %>
+<div class="center tag"><%= link_to "Tag hinzufügen",  post_addtag_path(@post)%></div>
+<h2> Kommentare </h2>
+
+<% @post.comments.each do |comment| %>
+<div class="row center comment" ><%= comment.text%></div>
+<% end %>
+<%= link_to "Kommentieren",  new_post_comment_path(@post)%>
+
