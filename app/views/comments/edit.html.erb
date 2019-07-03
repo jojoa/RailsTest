@@ -1,0 +1,17 @@
+<% provide(:title, 'Kommentar editieren') %>
+<h1>
+    Den Kommentar zum Post <%=@post.title %> editieren
+</h1>
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+    <%= form_for(@comment, url: post_comment_path(@post, @comment), method: "PATCH") do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+
+        <%= f.label :text %>
+        <%= f.text_area :text, class: 'form-control' %>
+    
+
+        <%= f.submit "Ändern", class: "btn btn-primary" %>
+    <% end %>
+</div>
+</div>

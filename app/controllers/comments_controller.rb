@@ -13,10 +13,30 @@ class CommentsController < ApplicationController
         else
           render 'new'
         end
-        
+    end
 
+    def edit
+      @post = Post.find(params[:post_id])
+      @comment = @post.comments.find(params[:id])
+    end
 
+    def update
+      @post = Post.find(params[:post_id])
+      @comment = @post.comments.find(params[:id])
 
+      @comment.update(comment_params)
+      @comment.save
+
+      redirect_to @post
+    end
+
+    def destroy
+      @post = Post.find(params[:post_id])
+      @comment = @post.comments.find(params[:id])
+
+      @comment.destroy
+      
+      redirect_to @post
     end
     private
 

@@ -24,7 +24,13 @@
 <div class="post-section-div">
     <h2> Kommentare </h2>
     <% @post.comments.each do |comment| %>
-        <div class="row center comment" ><%= comment.text%></div>
+        <div class="row center comment" >
+            <%= comment.text%>
+        </div>
+        <div class="row center comment">
+            <%= link_to "Bearbeiten", edit_post_comment_path(@post,comment), class: "btn" %>
+            <%= link_to "Löschen", post_comment_path(@post, comment), method: "DELETE", class: "btn" %>
+        </div>
     <% end %>
     <br>
     <div class="row center">
