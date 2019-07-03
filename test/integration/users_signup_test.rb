@@ -11,7 +11,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     assert_template 'users/new'
     assert_select 'div#error_explanation'
-    assert_select 'div.ield_with_errors'
+    assert_select 'div.field_with_errors'
   end
 
   test "valid signup" do
@@ -24,6 +24,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     follow_redirect!
     assert_template 'users/show'
-    assert_not flash.FILL_IN
+    assert is_logged_in?
+    assert_not flash.empty?
   end
 end

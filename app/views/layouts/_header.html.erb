@@ -18,11 +18,29 @@
                 Tags <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
+                <li><%= link_to "Alle Tags", tags_path %></li>
                 <li><%= link_to "Neuer Tag", new_tag_path %></li>
               </ul>
             </li>
             <li><%= link_to "Help", help_path %></li>
-            <li><%= link_to "Log In", '#' %></li>
+            <% if logged_in? %>
+              <li><%= link_to "Benutzer", '#' %></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  Account <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Profil", current_user %></li>
+                  <li><%= link_to "Einstellungen", '#' %></li>
+                  <li class="divider"></li>
+                  <li>
+                    <%= link_to "Ausloggen", logout_path, method: 'DELETE' %>
+                  </li>
+                </ul>
+              </li>
+            <% else %>
+              <li><%= link_to "Einloggen", login_path %></li>
+            <% end %>
           </ul>
         </nav>
     </div>

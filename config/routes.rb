@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'sessions/new'
   root 'static_pages#home'
   get '/help', to: 'static_pages#help'
   get '/about', to: 'static_pages#about'
@@ -8,6 +9,10 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
  # get '/post', to: 'posts#new'
  # post '/post', to: 'posts#create'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  
   resources :tags
   resources :posts do
     get '/addtag', to: 'tags#newbind'
