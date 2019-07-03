@@ -3,6 +3,21 @@ class TagsController < ApplicationController
         @tag = Tag.new
     end
 
+    def edit
+        @tag = Tag.find(params[:id])
+    end
+
+    def update
+        @tag = Tag.find(params[:id])
+        @tag.update(tags_params)
+        @tag.save
+        redirect_to tags_path
+    end
+
+    def index
+        @tags = Tag.all
+    end
+
     def create
         @tag = Tag.new(tags_params)
         if @tag.save
@@ -35,7 +50,17 @@ class TagsController < ApplicationController
     end
 
     def destroybind
+        @post = Post.find(params[:post_id])
+        @tag = Tag.find(params[:id])
+        @post.tags.delete(@tag)
+        @post.save
+        redirect_to post_path(@post)
+    end
 
+    def destroy
+        @tag = Tag.find(params[:id])
+        @tag.destroy
+        redirect_to tags_path
     end
 
     private

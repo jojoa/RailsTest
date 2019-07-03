@@ -13,7 +13,10 @@
 <div class="post-section-div">
 <h2>Tags</h2>
     <% @post.tags.each do |tag| %>
-         <div class="center tag" ><%= tag.name%></div>
+         <div class="center tag row" >
+            <%= tag.name%>
+            <%= link_to "Entfernen", post_tag_destroy_path(@post, tag), method: "DELETE" %>
+         </div>
     <% end %>
     <br>
     <div class="center tag"><%= link_to "Tag hinzufügen",  post_addtag_path(@post), class: "btn btn-primary"%></div>

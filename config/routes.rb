@@ -8,12 +8,11 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
  # get '/post', to: 'posts#new'
  # post '/post', to: 'posts#create'
-  get '/tags/new', to: 'tags#new'
-  post '/tags/new', to: 'tags#create'
+  resources :tags
   resources :posts do
     get '/addtag', to: 'tags#newbind'
     post '/addtag', to: 'tags#createbind'
-    delete '/tag', to: 'tags#destroybind'
+    delete '/tag/:id', to: 'tags#destroybind', as: 'tag_destroy'
     resources :comments
   end
   resources :users

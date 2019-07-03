@@ -1,0 +1,12 @@
+<% provide(:title, 'Tags') %>
+<h1>Alle Tags</h1>
+<ul class="nostyle">
+    <% @tags.each do |tag| %>
+        <div class="row center post-section-div">
+            <li><h2><%= tag.name %></h2>
+                <%= link_to "Bearbeiten", edit_tag_path(tag), class: "btn btn-primary" %>
+                <%= link_to "Löschen", tag_path(tag), method: "DELETE", class: "btn btn-primary" %>
+            </li>
+        </div>
+    <% end %>
+</ul>
