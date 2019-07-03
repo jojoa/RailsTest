@@ -2,18 +2,29 @@
 <h1>
     Titel: <%= @post.title %>
 </h1>
-<div class="center"><%= @post.text %></div>
+<div class="center text-width-post"><%= @post.text %></div>
+<br>
+<br>
+<div class="center row">
+    <%= link_to "Bearbeiten", edit_post_path(@post), class: "btn btn-primary" %>
+    <%= link_to "Löschen", post_path(@post), method: "DELETE", class: "btn btn-primary" %>
+</div>
 
+<div class="post-section-div">
 <h2>Tags</h2>
-
-<% @post.tags_to_post.each do |tag_post| %>
-    <div class="center tag" ><%= tag_post.tag.name%></div>
-<% end %>
-<div class="center tag"><%= link_to "Tag hinzufügen",  post_addtag_path(@post)%></div>
-<h2> Kommentare </h2>
-
-<% @post.comments.each do |comment| %>
-<div class="row center comment" ><%= comment.text%></div>
-<% end %>
-<%= link_to "Kommentieren",  new_post_comment_path(@post)%>
-
+    <% @post.tags.each do |tag| %>
+         <div class="center tag" ><%= tag.name%></div>
+    <% end %>
+    <br>
+    <div class="center tag"><%= link_to "Tag hinzufügen",  post_addtag_path(@post), class: "btn btn-primary"%></div>
+</div>
+<div class="post-section-div">
+    <h2> Kommentare </h2>
+    <% @post.comments.each do |comment| %>
+        <div class="row center comment" ><%= comment.text%></div>
+    <% end %>
+    <br>
+    <div class="row center">
+        <%= link_to "Kommentieren",  new_post_comment_path(@post), class: "btn btn-primary"%>
+    </div>
+</div>

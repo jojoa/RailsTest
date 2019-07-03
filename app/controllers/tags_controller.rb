@@ -7,25 +7,31 @@ class TagsController < ApplicationController
         @tag = Tag.new(tags_params)
         if @tag.save
             flash[:success] = "Erfolgreich einen Tag erstellt"
-            render root
+            redirect_to root_path
           else
             render 'new'
           end
     end
 
     def newbind
-        @tags = Tag.all
         @post = Post.find(params[:post_id])
-        @tag = @post.tags_to_post.new
+        @tags = Tag.all
+        @newtags = []
+        @tags.each do |tag| 
+            if !@post.tags.include?(tag)
+                @newtags.push(tag)
+            end
+        end
+        @tag = @post.tags.new
         
     end
 
     def createbind
         @post = Post.find(params[:post_id])
-        @tag = @post.tags_to_post.build(tag_id: params[:tags_to_post][:tag_id])
-        debugger
-        @tag.save
-        redirect_to post_path(@tag)
+        @tag = Tag.find(params[:tag][:id])
+        @post.tags.push(@tag)
+        @post.save
+        redirect_to post_path(@post)
     end
 
     def destroybind
@@ -36,7 +42,8 @@ class TagsController < ApplicationController
 
     def tags_params
     params.require(:tag).permit(:name)
-  end
+    end
+
     def bind_params
         params.permit(:tag)
 

@@ -1,6 +1,6 @@
-<% provide(:title, "Einen Tag erstellen") %>
+<% provide(:title, "Tag hinzufügen") %>
 <h1>
-    Erstelle Tag
+    Tag hinzufügen
 </h1>
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
@@ -8,7 +8,7 @@
             <%= render 'shared/error_messages_posts' %>
 
             <%= f.label :text %>
-            <%= f.select(:tag_id, @tags.collect {|p| [p.name, p.id]
+            <%= f.select(:id, @newtags.collect {|p| [p.name, p.id]
             })%>
         
 

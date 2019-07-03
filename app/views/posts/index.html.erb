@@ -1,0 +1,15 @@
+<% provide(:title, 'Posts') %>
+<h1>Alle Posts</h1>
+<ul class="nostyle">
+    <% @posts.each do |post| %>
+        <div class="row center post-section-div">
+            <li><h2><%= post.title %></h2>
+                <%= link_to "Anzeigen", post_path(post), class: "btn btn-primary" %>
+            </li>
+        </div>
+        <br>
+        <div class="row center">
+            <li><%= post.text %></li>
+        </div>
+    <% end %>
+</ul>

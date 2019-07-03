@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
         @comment = @post.comments.new(comment_params)
         if @comment.save
           flash[:success] = "Erfolgreich kommentiert"
-          render @post
+          redirect_to @post
         else
           render 'new'
         end
