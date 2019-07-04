@@ -11,7 +11,8 @@
             <%= link_to user.name, user %>
             <% if current_user.admin? && !current_user?(user) %>
              | <%= link_to "Löschen", user, method: 'DELETE', data: { confirm: "Bist du sicher?" } %>
-        </li>
+            <% end %>
+             </li>
     <% end %>
 </ul>
 
